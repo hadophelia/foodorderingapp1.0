@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/MMU/FoodOrderingApp/app/src/main/res/layout/activity_admin_cancelation_request.xml" value="0.4" />
+        <entry key="..\:/MMU/FoodOrderingApp/app/src/main/res/layout/activity_admin_main_page.xml" value="0.4" />
+        <entry key="..\:/MMU/FoodOrderingApp/app/src/main/res/layout/activity_cancelation_request.xml" value="0.4" />
+        <entry key="..\:/MMU/FoodOrderingApp/app/src/main/res/layout/activity_checkout.xml" value="0.264" />
+        <entry key="..\:/MMU/FoodOrderingApp/app/src/main/res/layout/activity_confrim_order.xml" value="0.264" />
+        <entry key="..\:/MMU/FoodOrderingApp/app/src/main/res/layout/activity_delivery_change_availibility.xml" value="0.22327898550724637" />
+        <entry key="..\:/MMU/FoodOrderingApp/app/src/main/res/layout/activity_delivery_guy_availablity.xml" value="0.25" />
+        <entry key="..\:/MMU/FoodOrderingApp/app/src/main/res/layout/activity_delivery_guy_home.xml" value="0.264" />
+        <entry key="..\:/MMU/FoodOrderingApp/app/src/main/res/layout/activity_food_details.xml" value="0.264" />
+        <entry key="..\:/MMU/FoodOrderingApp/app/src/main/res/layout/activity_gpstracking_delivery_guy.xml" value="0.264" />
+        <entry key="..\:/MMU/FoodOrderingApp/app/src/main/res/layout/activity_kitchen_view_order.xml" value="0.264" />
+        <entry key="..\:/MMU/FoodOrderingApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/MMU/FoodOrderingApp/app/src/main/res/layout/activity_manage_cart.xml" value="0.264" />
+        <entry key="..\:/MMU/FoodOrderingApp/app/src/main/res/layout/activity_manage_food.xml" value="0.20199275362318841" />
+        <entry key="..\:/MMU/FoodOrderingApp/app/src/main/res/layout/activity_manage_foodmain.xml" value="0.264" />
+        <entry key="..\:/MMU/FoodOrderingApp/app/src/main/res/layout/activity_order_status_buyer.xml" value="0.264" />
+        <entry key="..\:/MMU/FoodOrderingApp/app/src/main/res/layout/activity_register.xml" value="0.4" />
+        <entry key="..\:/MMU/FoodOrderingApp/app/src/main/res/layout/content_scrolling.xml" value="0.20199275362318841" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

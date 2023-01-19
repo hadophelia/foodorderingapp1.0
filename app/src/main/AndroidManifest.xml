@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.foodorderingapp">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FoodOrderingApp">
+        <activity
+            android:name=".Cancelation_request"
+            android:exported="false" />
+        <activity
+            android:name=".Delivery_ChangeAvailibility"
+            android:exported="false" />
+        <activity
+            android:name=".DeliveryGuy_Home"
+            android:exported="false" />
+        <activity
+            android:name=".Admin_MainPage"
+            android:exported="false" />
+        <activity
+            android:name=".OrderStatus_Buyer"
+            android:exported="false" />
+        <activity
+            android:name=".Admin_Cancelation_Request"
+            android:exported="false" />
+        <activity
+            android:name=".Kitchen_ViewOrder"
+            android:exported="false" />
+        <activity
+            android:name=".GPSTracking_DeliveryGuy"
+            android:exported="false" />
+        <activity
+            android:name=".DeliveryGuy_Availablity"
+            android:exported="false" />
+        <activity
+            android:name=".ConfrimOrder"
+            android:exported="false" />
+        <activity
+            android:name=".Checkout"
+            android:exported="false" />
+        <activity
+            android:name=".Manage_Cart"
+            android:exported="false" />
+        <activity
+            android:name=".FoodDetails"
+            android:exported="false" />
+        <activity
+            android:name=".ManageFoodmain"
+            android:exported="false" />
+        <activity
+            android:name=".Register"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
