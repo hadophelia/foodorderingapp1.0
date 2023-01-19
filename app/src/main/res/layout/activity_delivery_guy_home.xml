@@ -6,4 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".DeliveryGuy_Home">
 
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="349dp"
+        android:layout_height="296dp"
+        android:layout_marginTop="68dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/tasks" />
+
+    <TextView
+        android:id="@+id/textView37"
+        android:layout_width="348dp"
+        android:layout_height="123dp"
+        android:text="No Requests At the moment please come back later!"
+        android:textColor="#0097A7"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView24"
+        android:textAlignment="center"/>
+
+    <Button
+        android:id="@+id/button20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Change Availability"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView37" />
 </androidx.constraintlayout.widget.ConstraintLayout>
