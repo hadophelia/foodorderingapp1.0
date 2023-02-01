@@ -6,10 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private Button button;
-    private Button managebutton;
+
+    private Button login,register;
+    private EditText username,password;
+    UserDB DB;
+
 
 
 
@@ -17,18 +22,40 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        managebutton = findViewById(R.id.loginbutton);
-        button = findViewById(R.id.register);
-        button.setOnClickListener(new View.OnClickListener() {
+        login = findViewById(R.id.loginButton);
+        register = findViewById(R.id.registerButton);
+        username = (EditText) findViewById(R.id.username);
+        password = (EditText) findViewById(R.id.password);
+        DB = new UserDB(this);
+
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openRegister();
             }
         });
-        managebutton.setOnClickListener(new View.OnClickListener() {
+
+        login.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                openmanage();
+                String id = username.getText().toString();
+                String pw = password.getText().toString();
+
+                if (id.equals("")||pw.equals("")){
+                    Toast.makeText(MainActivity.this, "Please enter username and password",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Boolean validuser = DB.validateUser(id,pw);
+                    if (validuser){
+                        Toast.makeText(MainActivity.this, "Signed in Succesful!",Toast.LENGTH_SHORT).show();
+                        openManage();
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this, "Invalid Credential!",Toast.LENGTH_SHORT).show();
+                    }
+                }
+
             }
         });
     }
@@ -36,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,Register.class);
         startActivity(intent);
     }
-    public void openmanage() {
+    public void openManage() {
         Intent intent2 = new Intent (this,ManageFoodmain.class);
         startActivity(intent2);
     }
