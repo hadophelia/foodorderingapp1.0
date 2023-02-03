@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button login,register;
     private EditText username,password;
-    UserDB DB;
+    SystemDB DB;
 
 
 
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         register = findViewById(R.id.registerButton);
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
-        DB = new UserDB(this);
+        DB = new SystemDB(this);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Please enter username and password",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Boolean validuser = DB.validateUser(id,pw);
+                    Boolean validuser = DB.validateBuyer(id,pw);
                     if (validuser){
                         Toast.makeText(MainActivity.this, "Signed in Succesful!",Toast.LENGTH_SHORT).show();
                         openManage();

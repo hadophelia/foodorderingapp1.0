@@ -13,7 +13,7 @@ public class Register extends AppCompatActivity {
 
     private Button back, register;
     private EditText username,password,password2,email,phoneNumber,address;
-    UserDB DB;
+    SystemDB DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class Register extends AppCompatActivity {
         email = (EditText)findViewById(R.id.email);
         phoneNumber = (EditText)findViewById(R.id.phoneNumber);
         address = (EditText)findViewById(R.id.address);
-        DB = new UserDB(this);
+        DB = new SystemDB(this);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +54,7 @@ public class Register extends AppCompatActivity {
                     if(pw.equals(pw2)){
                         Boolean existUser = DB.checkusername(id);
                         if(!existUser){
-                            Boolean insertSuccess = DB.insertData(id,pw,email1,phoneNo,address1);
+                            Boolean insertSuccess = DB.insertBuyer(id,pw,email1,phoneNo,address1);
                             if(insertSuccess){
                                 Toast.makeText(Register.this, "Registered Succesfully!",Toast.LENGTH_SHORT).show();
                                 backToLogin();
