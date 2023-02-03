@@ -1,9 +1,11 @@
 package com.example.foodorderingapp;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,10 +15,12 @@ import java.util.List;
 
 public class FoodAdapter extends RecyclerView.Adapter<foodVH>{
 
-    List<String> items;
+    //List<String> items;
+    List<Food> food;
 
-    public FoodAdapter(List<String> items){
-        this.items = items;
+    //public FoodAdapter(List<String> items){this.items = items;}
+    public FoodAdapter(List<Food> foods){
+        this.food = foods;
     }
 
     @NonNull
@@ -30,13 +34,13 @@ public class FoodAdapter extends RecyclerView.Adapter<foodVH>{
 
     @Override
     public void onBindViewHolder(@NonNull foodVH holder, int position) {
-        holder.textView.setText(items.get(position));
+        holder.textView.setText(food.get(position).getName());
 
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return food.size();
     }
 
 }
@@ -52,7 +56,7 @@ class foodVH extends RecyclerView.ViewHolder{
         textView = itemView.findViewById(R.id.foodName);
         itemView.findViewById(R.id.add).setOnClickListener(view -> {
 
-            ManageFoodmain.cart.add(adapter.items.get(getAdapterPosition()));
+            ManageFoodmain.cart.add(adapter.food.get(getAdapterPosition()));
         });
     }
 

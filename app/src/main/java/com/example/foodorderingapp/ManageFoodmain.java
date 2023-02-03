@@ -17,7 +17,7 @@ public class ManageFoodmain extends AppCompatActivity {
 
     private Button gotoCart;
 
-    public static List<String> cart = new ArrayList<>();
+    public static List<Food> cart = new ArrayList<>();
 
     SystemDB DB = new SystemDB(this);
 
@@ -35,18 +35,22 @@ public class ManageFoodmain extends AppCompatActivity {
             }
         });
 
-        //todo: items  arraylist with all the food inside
-        //todo: make the cartlist, arraylist generic type == food
+        //todo: items  arraylist with all the food inside from database
 
-        List<String> items = new LinkedList<>();
-        items.add("Pizza 1");
-        items.add("Pizza 2");
-        items.add("Pizza 3");
-        items.add("Pizza 4");
+        Food Pizza1 = new Food("Peperoni",12.5,"F0001");
+        Food Pizza2 = new Food("Hawaiian Chicken",12.5,"F0002");
+        Food Pizza3 = new Food("Ranch",12.5,"F0003");
+
+        List<Food> food = new ArrayList<>();
+        food.add(Pizza1);
+        food.add(Pizza2);
+        food.add(Pizza3);
+
+
 
         RecyclerView recyclerView = findViewById(R.id.menu);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        FoodAdapter adapter = new FoodAdapter(items);
+        FoodAdapter adapter = new FoodAdapter(food);
         recyclerView.setAdapter(adapter);
 
         //todo: function if search button is clicked, recycle view adapter = new food adapter(search item), set new adapter

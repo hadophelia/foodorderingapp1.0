@@ -12,9 +12,9 @@ import java.util.List;
 
 public class cartAdapter extends RecyclerView.Adapter<cartVH>{
 
-    List<String> items;
+    List<Food> items;
 
-    public cartAdapter(List<String> items){
+    public cartAdapter(List<Food> items){
         this.items = items;
     }
 
@@ -28,7 +28,7 @@ public class cartAdapter extends RecyclerView.Adapter<cartVH>{
 
     @Override
     public void onBindViewHolder(@NonNull cartVH holder, int position) {
-        holder.textView.setText(items.get(position));
+        holder.textView.setText(items.get(position).getName());
 
     }
 

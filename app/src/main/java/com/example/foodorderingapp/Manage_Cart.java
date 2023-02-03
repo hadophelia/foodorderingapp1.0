@@ -27,7 +27,7 @@ public class Manage_Cart extends AppCompatActivity {
         backToMain = findViewById(R.id.backToMainButton);
         checkOut = findViewById(R.id.checkOutButton);
 
-        List<String> items = new LinkedList<>();
+        List<Food> items = new LinkedList<>();
         items = ManageFoodmain.cart;
         //items.add("Pizza 1");
         //items.add("Pizza 2");
