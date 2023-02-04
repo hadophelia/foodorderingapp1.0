@@ -17,10 +17,15 @@ public class FoodAdapter extends RecyclerView.Adapter<foodVH>{
 
     //List<String> items;
     List<Food> food;
+    Context context;
 
     //public FoodAdapter(List<String> items){this.items = items;}
     public FoodAdapter(List<Food> foods){
         this.food = foods;
+    }
+
+    public void setContext(Context context){
+        this.context = context;
     }
 
     @NonNull
@@ -35,6 +40,7 @@ public class FoodAdapter extends RecyclerView.Adapter<foodVH>{
     @Override
     public void onBindViewHolder(@NonNull foodVH holder, int position) {
         holder.textView.setText(food.get(position).getName());
+        holder.price.setText("RM" + Double.toString(food.get(position).getPrice()));
 
     }
 
@@ -47,16 +53,18 @@ public class FoodAdapter extends RecyclerView.Adapter<foodVH>{
 
 class foodVH extends RecyclerView.ViewHolder{
 
-    TextView textView;
+    TextView textView,price;
     private FoodAdapter adapter;
 
     public foodVH(@NonNull View itemView) {
         super(itemView);
 
         textView = itemView.findViewById(R.id.foodName);
+        price = itemView.findViewById(R.id.price);
         itemView.findViewById(R.id.add).setOnClickListener(view -> {
 
             ManageFoodmain.cart.add(adapter.food.get(getAdapterPosition()));
+            Toast.makeText(adapter.context, "Added Successfully!",Toast.LENGTH_SHORT).show();
         });
     }
 

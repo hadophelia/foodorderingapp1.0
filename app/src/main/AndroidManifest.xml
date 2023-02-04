@@ -10,6 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOrderingApp" >
         <activity
+            android:name=".Buyer_Orders"
+            android:exported="false" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Cancelation_request"
             android:exported="false" />
         <activity

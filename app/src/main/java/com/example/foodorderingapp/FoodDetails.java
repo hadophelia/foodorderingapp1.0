@@ -13,7 +13,6 @@ public class FoodDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_details);
-        radioGroup=findViewById(R.id.radioGroup);
 
     }
 }

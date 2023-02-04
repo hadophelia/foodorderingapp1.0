@@ -26,25 +26,22 @@
 
     <Button
         android:id="@+id/toCartButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/menu"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="241dp"
-        android:layout_marginTop="529dp"
+        android:layout_marginTop="-66dp"
         android:layout_marginEnd="44dp"
-        android:layout_marginBottom="32dp"
         android:text="Go to cart" />
 
     <Button
         android:id="@+id/toOrdersButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="51dp"
+        android:layout_marginStart="48dp"
         android:layout_marginBottom="32dp"
         android:text="GO TO ORDER" />
 
@@ -52,12 +49,12 @@
         android:id="@+id/foodName"
         android:layout_width="130dp"
         android:layout_height="40dp"
+        android:layout_below="@+id/textView3"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="58dp"
+        android:layout_marginTop="18dp"
         android:layout_marginEnd="143dp"
-        android:layout_marginBottom="437dp"
         android:background="@color/cardview_light_background"
         android:ems="10"
         android:gravity="center"
@@ -65,30 +62,43 @@
         android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/textView4"
+        android:id="@+id/searchButton"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="292dp"
-        android:layout_marginBottom="438dp"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-103dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="24dp"
         android:background="@color/purple_200"
         android:gravity="center"
         android:text="search" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/menu"
-        android:layout_width="288dp"
-        android:layout_height="301dp"
-        android:layout_alignParentTop="true"
+        android:layout_width="332dp"
+        android:layout_height="294dp"
+        android:layout_below="@+id/foodName"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="196dp"
-        android:layout_marginEnd="70dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="41dp"
         android:layout_marginBottom="106dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="61dp"
+        android:layout_above="@+id/searchButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="41dp"
+        android:background="@color/purple_200"
+        android:text="Logout" />
 
 
 </RelativeLayout>

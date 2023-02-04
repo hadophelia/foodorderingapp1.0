@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -46,10 +47,27 @@ public class Manage_Cart extends AppCompatActivity {
             }
         });
 
+        checkOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ManageFoodmain.cart.size() == 0){
+                    Toast.makeText(Manage_Cart.this, "Cart is Empty",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    setCheckOut();
+                }
+            }
+        });
+
     }
 
     private void setBackToMain(){
         Intent intent = new Intent(this, ManageFoodmain.class);
         startActivity(intent);
+    }
+
+    private void setCheckOut(){
+        Intent intent2 = new Intent(this, Checkout.class);
+        startActivity(intent2);
     }
 }

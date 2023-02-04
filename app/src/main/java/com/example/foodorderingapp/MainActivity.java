@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText username,password;
     SystemDB DB;
 
+    public static String currentUser,address;
+
 
 
 
@@ -49,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
                     Boolean validuser = DB.validateBuyer(id,pw);
                     if (validuser){
                         Toast.makeText(MainActivity.this, "Signed in Succesful!",Toast.LENGTH_SHORT).show();
+                        currentUser = id;
+                        address = DB.getAddress(id);
                         openManage();
                     }
                     else{

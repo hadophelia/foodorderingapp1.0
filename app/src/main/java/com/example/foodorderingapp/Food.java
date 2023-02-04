@@ -29,35 +29,43 @@ public class Food {
         return this.ID;
     }
 
-    public int getQuantity(){
-        return quantity;
-    }
-
-    public void addQuantity(){
-        this.quantity ++;
-    }
-
-    public void reduceQuantity(){
-        this.quantity --;
-    }
 }
 
 class Cart{
     private List<Food> cart = new ArrayList<>();
 
-    public Cart(){
+    public Cart(List<Food> cart){
+        this.cart = cart;
     }
 
     public void addToCart(Food food){
         this.cart.add(food);
     }
 
-    public void checkIfDelete(){ //when the quantity is updated,
-        for(int i = 0; i < cart.size();i++){
-            if (cart.get(i).getQuantity() == 0){
-                cart.remove(i);
+    public double calculatePrice(){
+        double total = 0;
+        for(int i = 0; i<cart.size(); i++){
+            total += cart.get(i).getPrice();
+        }
+        return total;
+    }
+
+    public boolean isEmpty(){
+        if (cart.size() == 0){
+            return true;
+        }
+        else return false;
+    }
+
+    public String toName(){
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < cart.size(); i++){
+            sb.append(cart.get(i).getName());
+            if(i < cart.size() - 1) {
+                sb.append(",");
             }
         }
+        return sb.toString();
     }
 
     public String toString(){
