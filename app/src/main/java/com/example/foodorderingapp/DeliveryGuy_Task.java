@@ -37,6 +37,7 @@ public class DeliveryGuy_Task extends AppCompatActivity {
             order.append("\nFood(s): " + myOrder.getFoodID());
             order.append("\nAddress: " + myOrder.getAddress());
             order.append("\nETA: " + myOrder.getETA());
+            order.append("\nBuyer Phone Number: " + DB.getBuyerPhone(myOrder.getBuyerID()));
 
             orderInfo.setText(order.toString());
 

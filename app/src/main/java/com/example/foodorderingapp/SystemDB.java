@@ -42,6 +42,21 @@ public class SystemDB extends SQLiteOpenHelper {
 
     }
 
+    public String getBuyerPhone(String buyerID){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        String phone = null;
+
+        Cursor cursor = (MyDB.rawQuery("Select phoneNumber from buyers where username = ?", new String[]{buyerID}));
+        cursor.moveToFirst();
+        if (cursor != null){
+            if (cursor.moveToFirst()){
+                phone = cursor.getString(cursor.getColumnIndex("phoneNumber"));
+            }
+            //the warning is dealed with cursor.movetofirst()
+        }
+        return phone;
+    }
+
     public String getDGphoneNumber(String dgID){
         SQLiteDatabase MyDB = this.getWritableDatabase();
         String phone = null;
