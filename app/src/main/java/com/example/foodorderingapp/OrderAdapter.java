@@ -38,13 +38,12 @@ public class OrderAdapter extends RecyclerView.Adapter<orderVH>{
 
     @Override
     public void onBindViewHolder(@NonNull orderVH holder, int position) {
-        //holder.OrderID.setText((orders.get(position).getOrderID()));
-        //holder.foodName.setText((orders.get(position).getMyCart().toName()));
-        //holder.foodName.setText("999");
-        //holder.price.setText("999");
-        //holder.price.setText((Double.toString(orders.get(position).getMyCart().calculatePrice())));
-        //holder.status.setText("Ongoing");
-        //holder.status.setText((orders.get(position).getOrderStatus()));
+        Order tempOrder = orders.get(position);
+        holder.OrderID.setText(("Order Number: #" + Integer.toString(orders.get(position).getOrderID())));
+        //holder.foodName.setText("Food Ordered");
+        holder.foodName.setText(("Food Ordered: " + orders.get(position).getFoodID()));
+        holder.price.setText(("Price: RM" + Double.toString(tempOrder.getPrice())));
+        holder.status.setText(("Order Status: " + tempOrder.getOrderStatus()));
         //holder.phone.setText(("0123456789"));
         //TODO: implement the deliveryguydatabase and deliveryguy objectinordertogenerate phone
 
@@ -67,7 +66,7 @@ class orderVH extends RecyclerView.ViewHolder{
         super(itemView);
 
         OrderID = itemView.findViewById(R.id.orderID);
-        foodName = itemView.findViewById(R.id.foodName);
+        foodName = itemView.findViewById(R.id.FoodName);
         price = itemView.findViewById(R.id.price);
         status = itemView.findViewById(R.id.status);
         ETA = itemView.findViewById(R.id.ETA);

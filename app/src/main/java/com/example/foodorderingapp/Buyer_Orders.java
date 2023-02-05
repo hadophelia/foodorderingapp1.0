@@ -23,9 +23,11 @@ public class Buyer_Orders extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer_orders);
-        //DB = new SystemDB(this);
-        myOrder.add(new Order(1));
+        DB = new SystemDB(this);
+        myOrder = DB.getBuyerOrder(MainActivity.currentUser);
+        //myOrder.add(new Order(1));
         //myOrder = DB.getOrderBuyer(MainActivity.currentUser);
+        //Order myOr = DB.getOrderBuyer(MainActivity.currentUser);
         Button backToMain = findViewById(R.id.backToMainButton);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
