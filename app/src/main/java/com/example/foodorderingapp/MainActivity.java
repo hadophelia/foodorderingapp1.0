@@ -66,9 +66,14 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Invalid Credential!",Toast.LENGTH_SHORT).show();
                         }
                     }
+
                     else if (accounttype.equals("Delivery Guy")){
-                        if (id.equals("delivery1")||pw.equals("pw1")){
+                        Boolean validuser = DB.validateDeliveryGuy(id,pw);
+                        if (validuser){
                             Toast.makeText(MainActivity.this, "Signed in Succesful!",Toast.LENGTH_SHORT).show();
+                            currentUser = id;
+                            //address = DB.getAddress(id);
+                            openDelivery();
                         }
                         else{
                             Toast.makeText(MainActivity.this, "Invalid Credential!",Toast.LENGTH_SHORT).show();
@@ -90,6 +95,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void openDelivery(){
+        Intent intent4 = new Intent(this, DeliveryGuy_Home.class);
+        startActivity(intent4);
     }
 
     public void openKitchen(){

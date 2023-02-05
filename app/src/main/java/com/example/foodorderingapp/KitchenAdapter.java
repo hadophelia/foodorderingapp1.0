@@ -74,7 +74,6 @@ class kitchenVH extends RecyclerView.ViewHolder{
             adapter.orders.remove(getAdapterPosition());
             adapter.notifyItemRemoved(getAdapterPosition());
 
-            //TODO: ADD THE CANCELLATION FUNCTION
             Toast.makeText(adapter.context, "Notifying Delivery Guy!",Toast.LENGTH_SHORT).show();
         });
     }

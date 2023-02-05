@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +15,7 @@ import java.util.List;
 public class Kitchen_ViewOrder extends AppCompatActivity {
 
     SystemDB DB;
-    Button refresh;
+    Button refresh,logOut;
 
     private List<Order> myOrder = new ArrayList<>();
 
@@ -25,7 +26,7 @@ public class Kitchen_ViewOrder extends AppCompatActivity {
         DB = new SystemDB(this);
 
         myOrder = DB.getKitchenOrder();
-        Button refresh = findViewById(R.id.refreshButton);
+        refresh = findViewById(R.id.refreshButton);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -44,5 +45,23 @@ public class Kitchen_ViewOrder extends AppCompatActivity {
                 //DB.requestDelivery(1);
             }
         });
+
+        logOut = findViewById(R.id.logoutButton);
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setLogOut();
+            }
+        });
+
+
     }
+
+    public void setLogOut(){
+        MainActivity.currentUser = null;
+        MainActivity.address = null;
+        Intent intent0 = new Intent(this,MainActivity.class);
+        startActivity(intent0);
+    }
+
 }
