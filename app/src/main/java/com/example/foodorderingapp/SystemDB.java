@@ -24,7 +24,7 @@ public class SystemDB extends SQLiteOpenHelper {
         MyDB.execSQL("create Table buyers(username TEXT primary key, password TEXT,email TEXT,phoneNumber TEXT,address TEXT)");
         MyDB.execSQL("create Table foods(foodID TEXT primary key,foodName TEXT,foodDescription TEXT,foodPrice double)");
         MyDB.execSQL("create Table deliveryGuys(deliveryGuyID TEXT primary key,username TEXT, password TEXT,phoneNumber TEXT,plateNumber TEXT)");
-        MyDB.execSQL("create Table orders(orderID INTEGER primary key autoincrement,buyerUsername TEXT,address TEXT,FoodID TEXT,orderStatus TEXT,deliveryGuyID TEXT, ETA TEXT)");
+        MyDB.execSQL("create Table orders(orderID INTEGER primary key autoincrement,buyerUsername TEXT,address TEXT,FoodID TEXT,orderStatus TEXT,deliveryGuyID TEXT, ETA TEXT,Price double)");
     }
 
     @Override
@@ -35,18 +35,27 @@ public class SystemDB extends SQLiteOpenHelper {
         MyDB.execSQL("drop table if exists orders");
     }
 
-    /*public String getDGphoneNumber(String dgID){
+    public void clearOrders(){
         SQLiteDatabase MyDB = this.getWritableDatabase();
-        String address = null;
+        MyDB.execSQL("drop table if exists orders");
+        MyDB.execSQL("create Table orders(orderID INTEGER primary key autoincrement,buyerUsername TEXT,address TEXT,FoodID TEXT,orderStatus TEXT,deliveryGuyID TEXT, ETA TEXT,Price double)");
 
-        Cursor cursor = (MyDB.rawQuery("Select address from buyers where username = ?", new String[]{username}));
+    }
+
+    public String getDGphoneNumber(String dgID){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        String phone = null;
+
+        Cursor cursor = (MyDB.rawQuery("Select phoneNumber from deliveryGuys where deliveryGuyID = ?", new String[]{dgID}));
         cursor.moveToFirst();
         if (cursor != null){
-            cursor.moveToFirst();
-            address = cursor.getString(cursor.getColumnIndex("address")); //the warning is dealed with cursor.movetofirst()
+            if (cursor.moveToFirst()){
+                phone = cursor.getString(cursor.getColumnIndex("address"));
+            }
+            //the warning is dealed with cursor.movetofirst()
         }
-        return address;
-    }*/
+        return phone;
+    }
 
     /*public Order getOrder(String orderID){
         SQLiteDatabase MyDB = this.getWritableDatabase();
@@ -66,98 +75,64 @@ public class SystemDB extends SQLiteOpenHelper {
         }
 
         return myOrder;
-    }
-
-    public List<Order> getOrderDelivery(){
-        SQLiteDatabase MyDB = this.getWritableDatabase();
-        List<Order> orderList = new ArrayList<>();
-        String status = "Ready to be delivered.";
-        Cursor cursor = MyDB.rawQuery("Select * from orders where status = ?", new String[]{status});
-        cursor.moveToFirst();
-
-
-        while(!cursor.isAfterLast()){
-
-            int orderID = cursor.getInt(cursor.getColumnIndex("orderID"));
-            String buyerID = cursor.getString(cursor.getColumnIndex("buyerUsername"));
-            String address = cursor.getString(cursor.getColumnIndex("address"));
-            String foodID = cursor.getString(cursor.getColumnIndex("FoodID"));
-            String orderStatus = cursor.getString(cursor.getColumnIndex("orderStatus"));
-            String deliveryGuyID = cursor.getString(cursor.getColumnIndex("deliveryGuyID"));
-            String ETA = cursor.getString(cursor.getColumnIndex("ETA"));
-            Order order = new Order(orderID, buyerID,address,foodID,orderStatus,deliveryGuyID,ETA);
-            orderList.add(order);
-            cursor.moveToNext();
-        }
-
-        return orderList;
-    }
-
-    public List<Order> getOrderKitchen(){
-        SQLiteDatabase MyDB = this.getWritableDatabase();
-        List<Order> kitchenOrder = new ArrayList<>();
-        String status = "Order Received!";
-        Cursor cursor = MyDB.rawQuery("Select * from orders where status = ?", new String[]{status});
-        cursor.moveToFirst();
-        while(!cursor.isAfterLast()){
-
-            int orderID = cursor.getInt(cursor.getColumnIndex("orderID"));
-            String buyerID = cursor.getString(cursor.getColumnIndex("buyerUsername"));
-            String address = cursor.getString(cursor.getColumnIndex("address"));
-            String foodID = cursor.getString(cursor.getColumnIndex("FoodID"));
-            String orderStatus = cursor.getString(cursor.getColumnIndex("orderStatus"));
-            String deliveryGuyID = cursor.getString(cursor.getColumnIndex("deliveryGuyID"));
-            String ETA = cursor.getString(cursor.getColumnIndex("ETA"));
-            Order order = new Order(orderID, buyerID,address,foodID,orderStatus,deliveryGuyID,ETA);
-            kitchenOrder.add(order);
-            cursor.moveToNext();
-        }
-
-        return kitchenOrder;
     }*/
 
-    public List<Order> getOrderBuyer(String buyerID){
+
+    public ArrayList<Food> getFood(){
         SQLiteDatabase MyDB = this.getWritableDatabase();
-        List<Order> myOrder = new ArrayList<>();
-        Cursor cursor = MyDB.rawQuery("Select * from orders where buyerUsername = ?", new String[]{buyerID});
-        /*if (cursor.getCount() > 0){
-            cursor.moveToFirst();
-            while(cursor.isAfterLast() == false){
-                Order order = new Order(1);
+        Cursor cursor = MyDB.rawQuery("Select * from foods" ,null);
+        ArrayList<Food> resultList = new ArrayList<>();
 
-                //Order order = new Order(cursor.getInt(cursor.getColumnIndex("orderID")));
-                        /*new Order(cursor.getInt(0),
-                        cursor.getString(1),
-                        cursor.getString(2),
-                        cursor.getString(3),
-                        cursor.getString(4),
-                        cursor.getString(5),
-                        cursor.getString(6));
-                //myOrder.add(order);
-
-
-                int orderID = cursor.getInt(cursor.getColumnIndex("orderID"));
-                buyerID = cursor.getString(cursor.getColumnIndex("buyerUsername"));
-                String address = cursor.getString(cursor.getColumnIndex("address"));
-                String foodID = cursor.getString(cursor.getColumnIndex("FoodID"));
-                String orderStatus = cursor.getString(cursor.getColumnIndex("orderStatus"));
-                String deliveryGuyID = cursor.getString(cursor.getColumnIndex("deliveryGuyID"));
-                String ETA = cursor.getString(cursor.getColumnIndex("ETA"));*/
-                //Order order = new Order(orderID, buyerID,address,foodID,orderStatus,deliveryGuyID,ETA);
-                //myOrder.add(order);
-                //cursor.moveToNext();
-       /*     }
-            cursor.close();
-            return myOrder;
-        }*/
-
-        return myOrder;
+        if(cursor.moveToFirst()){
+            do{
+                Food food = new Food(cursor.getString(0), cursor.getString(1),cursor.getString(2), cursor.getDouble(3));
+                resultList.add(food);
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        return resultList;
     }
+
+    public ArrayList<Order> getKitchenOrder(){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select * from orders where orderStatus = ?", new String[]{"Order Received!"});
+        ArrayList<Order> resultList = new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do{
+                Order order = new Order(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3)
+                        , cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getDouble(7));
+                resultList.add(order);
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        return resultList;
+    }
+
+
+    public ArrayList<Order> getBuyerOrder(String buyerID){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select * from orders where buyerUsername = ?", new String[]{buyerID});
+        ArrayList<Order> resultList = new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do{
+                Order order = new Order(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3)
+                        , cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getDouble(7));
+                resultList.add(order);
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        return resultList;
+    }
+
+
+
 
     public void requestDelivery(int orderID){
         SQLiteDatabase MyDB = this.getWritableDatabase();
-        String[] parameter = {"Ready to be delivered.",Integer.toString(orderID)};
-        MyDB.rawQuery("UPDATE orders SET orderStatus = ? WHERE orderID = ?", parameter);
+        //String[] parameter = {"Ready to be delivered.",Integer.toString(orderID)};
+        MyDB.execSQL("UPDATE orders SET orderStatus = 'Readey to be delivered.' WHERE orderID = " + orderID);
     }
 
     public void acceptingDelivery(int orderID, String DeliveryGuyID){
@@ -173,13 +148,14 @@ public class SystemDB extends SQLiteOpenHelper {
         MyDB.rawQuery("UPDATE orders SET ETA = ? WHERE orderID = ?", parameter);
     }
 
-    public boolean createOrder(String buyerUsername,String address,String FoodID){
+    public boolean createOrder(String buyerUsername,String address,String FoodID,Double price){
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues= new ContentValues();
         contentValues.put("buyerUsername", buyerUsername); // column name,value
         contentValues.put("address", address);
         contentValues.put("FoodID", FoodID);
         contentValues.put("orderStatus", "Order Received!");
+        contentValues.put("Price",price);
         long result = MyDB.insert("orders", null, contentValues);
         if(result==-1) return false; //insertion failed
         else
@@ -248,6 +224,7 @@ public class SystemDB extends SQLiteOpenHelper {
         }
         return address;
     }
+
 
     public Boolean validateBuyer(String username, String password){ //check if a user exist
         SQLiteDatabase MyDB = this.getWritableDatabase();

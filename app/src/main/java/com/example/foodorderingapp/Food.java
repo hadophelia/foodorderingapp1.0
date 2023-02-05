@@ -1,5 +1,7 @@
 package com.example.foodorderingapp;
 
+import android.hardware.input.InputManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +10,13 @@ public class Food {
     private double price;
     private String ID;
     private String description;
-    private int quantity;
 
+    public Food(String ID, String name,String description,Double price){
+        this.name = name;
+        this.price = price;
+        this.ID = ID;
+        this.description = description;
+    }
 
     public Food(String name, Double price, String ID){
         this.name = name;

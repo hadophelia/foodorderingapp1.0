@@ -37,20 +37,11 @@ public class ManageFoodmain extends AppCompatActivity {
         foodName = findViewById(R.id.foodName);
         logOut = findViewById(R.id.logoutButton);
         toOrders = findViewById(R.id.toOrdersButton);
-
-
-
-        //todo: items  arraylist with all the food inside from database
-
-        menu = createMenu();
-
+        menu = DB.getFood();
+        //DB.clearOrders();
 
         RecyclerView recyclerView = findViewById(R.id.menu);
         showFood(recyclerView,menu);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //FoodAdapter adapter = new FoodAdapter(menu);
-        //adapter.setContext(ManageFoodmain.this);
-        //recyclerView.setAdapter(adapter);
 
         gotoCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,9 +69,6 @@ public class ManageFoodmain extends AppCompatActivity {
                         searchHit = true;
                         searchList.add(menu.get(i));
                         showFood(recyclerView,searchList);
-                        //FoodAdapter searchAdapter = new FoodAdapter(searchList);
-                        //searchAdapter.setContext(ManageFoodmain.this);
-                        //recyclerView.setAdapter(searchAdapter);
                     }
                 }
                 if (!searchHit){
@@ -124,23 +112,12 @@ public class ManageFoodmain extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    private List<Food> createMenu(){
-        Food Pizza1 = new Food("Peperoni",12.5,"F0001");
-        Food Pizza2 = new Food("Hawaiian Chicken",12.5,"F0002");
-        Food Pizza3 = new Food("Ranch",12.5,"F0003");
-
-        List<Food> food = new ArrayList<>();
-        food.add(Pizza1);
-        food.add(Pizza2);
-        food.add(Pizza3);
-
-        return food;
-    }
-
     private void addFood() {
-        DB.insertFood("F0001","Peperoni Pizza","A pizza",25);
-        DB.insertFood("F0002","Extravanganza","Another pizza",25);
-        DB.insertFood("F0003","Ranch","Another pizza",25);
+        DB.insertFood("F0001","Peperoni Pizza","If you have a love for spice, you must go for pizzas with pepperoni toppings.",18);
+        DB.insertFood("F0002","Extravaganza Pizza","Pepperoni, ham, Italian sausage, beef, fresh onions, fresh green peppers, fresh mushrooms, and black olives — all sandwiched between two layers of cheese made with 100% real mozzarella.",18);
+        DB.insertFood("F0003","Margherita Pizza"," A traditional Margherita pizza with fresh tomato sauce, mozzarella cheese and basil which represent the colours of the Italian flag – white cheese, green basil and red tomato.",18);
+        DB.insertFood("F0004","Mac and Cheese","Deliciously rich and gooey, this baked mac and cheese is creamy, comforting, and PERFECT for the holidays, as well as a comforting family dinner!",16);
+        DB.insertFood("F0005","Aglio e Olio","This recipe gets rich flavor from olive oil, garlic, and red pepper flakes.",14);
     }
 
 

@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class OrderAdapter extends RecyclerView.Adapter<orderVH>{
+public class KitchenAdapter extends RecyclerView.Adapter<kitchenVH>{
 
-    //List<String> items;
     List<Order> orders;
-    Context context;
+    static Context context;
+    static SystemDB DB;
 
 
-    public OrderAdapter(List<Order> orders){
+    public KitchenAdapter(List<Order> orders){
         this.orders = orders;
     }
 
@@ -29,21 +29,19 @@ public class OrderAdapter extends RecyclerView.Adapter<orderVH>{
 
     @NonNull
     @Override
-    public orderVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public kitchenVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.ongoing_orderslayout, parent,false);
-        return new orderVH(view).linkAdapter(this);
+                .inflate(R.layout.kitchen_orderlayout, parent,false);
+        return new kitchenVH(view).linkAdapter(this);
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull orderVH holder, int position) {
+    public void onBindViewHolder(@NonNull kitchenVH holder, int position) {
         Order tempOrder = orders.get(position);
         holder.OrderID.setText(("Order Number: #" + Integer.toString(orders.get(position).getOrderID())));
         //holder.foodName.setText("Food Ordered");
         holder.foodName.setText(("Food Ordered: " + orders.get(position).getFoodID()));
-        holder.price.setText(("Price: RM" + Double.toString(tempOrder.getPrice())));
-        holder.status.setText(("Order Status: " + tempOrder.getOrderStatus()));
         //holder.phone.setText(("0123456789"));
         //TODO: implement the deliveryguydatabase and deliveryguy objectinordertogenerate phone
 
@@ -57,29 +55,31 @@ public class OrderAdapter extends RecyclerView.Adapter<orderVH>{
 
 }
 
-class orderVH extends RecyclerView.ViewHolder{
+class kitchenVH extends RecyclerView.ViewHolder{
 
-    TextView OrderID,foodName,price,status,ETA,phone;
-    private OrderAdapter adapter;
+    TextView OrderID,foodName;
+    private KitchenAdapter adapter;
 
-    public orderVH(@NonNull View itemView) {
+    public kitchenVH(@NonNull View itemView) {
         super(itemView);
 
         OrderID = itemView.findViewById(R.id.orderID);
         foodName = itemView.findViewById(R.id.FoodName);
-        price = itemView.findViewById(R.id.price);
-        status = itemView.findViewById(R.id.status);
-        ETA = itemView.findViewById(R.id.ETA);
-        phone = itemView.findViewById(R.id.phone);
 
-        itemView.findViewById(R.id.cancel).setOnClickListener(view -> {
+
+        itemView.findViewById(R.id.requestDelivery).setOnClickListener(view -> {
+            int orderID = adapter.orders.get(getAdapterPosition()).getOrderID();
+            adapter.DB = new SystemDB(adapter.context);
+            adapter.DB.requestDelivery(orderID);
+            adapter.orders.remove(getAdapterPosition());
+            adapter.notifyItemRemoved(getAdapterPosition());
+
             //TODO: ADD THE CANCELLATION FUNCTION
-            //ManageFoodmain.cart.add(adapter.food.get(getAdapterPosition()));
-            //Toast.makeText(adapter.context, "Added Successfully!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(adapter.context, "Notifying Delivery Guy!",Toast.LENGTH_SHORT).show();
         });
     }
 
-    public orderVH linkAdapter(OrderAdapter adapter){
+    public kitchenVH linkAdapter(KitchenAdapter adapter){
         this.adapter = adapter;
         return this;
     }

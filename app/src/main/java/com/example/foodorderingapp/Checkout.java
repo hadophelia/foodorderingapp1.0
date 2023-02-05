@@ -66,7 +66,7 @@ public class Checkout extends AppCompatActivity {
     }
 
     public void setCheckout() {
-        DB.createOrder(MainActivity.currentUser,address.getText().toString(),finalCart.toString());
+        DB.createOrder(MainActivity.currentUser,address.getText().toString(),finalCart.toName(), finalCart.calculatePrice());
         Toast.makeText(Checkout.this, "Order Created.",Toast.LENGTH_SHORT).show();
         ManageFoodmain.cart.clear();
         Intent intent2 = new Intent(this,ManageFoodmain.class);

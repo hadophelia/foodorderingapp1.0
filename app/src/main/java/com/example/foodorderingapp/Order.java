@@ -1,5 +1,7 @@
 package com.example.foodorderingapp;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +15,12 @@ public class Order {
     private String ETA;
 
     private List<Food> foodOrdered;
-    private List<Food> menu = ManageFoodmain.menu;
 
     private Cart myCart;
+    private double price;
+    SystemDB DB;
 
-    public Order(int orderID){
+    /*public Order(int orderID){
         this.orderID = orderID;
         this.buyerID = "buyerID";
         this.address = "address";
@@ -25,11 +28,12 @@ public class Order {
         this.orderStatus = "orderStatus";
         this.deliveryGuyID = "deliveryGuyID";
         this.ETA = "ETA";
-        //this.foodOrdered = generateList();
-        //this.myCart = new Cart(foodOrdered);
-    }
+        this.foodOrdered = generateList();
+        this.myCart = new Cart(foodOrdered);
+        this.price = myCart.calculatePrice();
+    }*/
 
-    public Order(int orderID, String buyerID, String address, String foodID, String orderStatus, String deliveryGuyID, String ETA) {
+    public Order(int orderID, String buyerID, String address, String foodID, String orderStatus, String deliveryGuyID, String ETA,Double price) {
         this.orderID = orderID;
         this.buyerID = buyerID;
         this.address = address;
@@ -37,6 +41,12 @@ public class Order {
         this.orderStatus = orderStatus;
         this.deliveryGuyID = deliveryGuyID;
         this.ETA = ETA;
+        this.price = price;
+    }
+
+
+    public double getPrice(){
+        return price;
     }
 
     public Cart getMyCart() {
@@ -54,13 +64,17 @@ public class Order {
         return foodOrdered;
     }
 
+    @NonNull
     private List<Food> generateList(){
         String[] tempFood = foodID.split(",");
         List<Food> food = new ArrayList<>();
-        for (int i = 0; i < menu.size();i++) {
-            for (int j = 0; j < tempFood.length;j++){
-                if (tempFood[j].equals(menu.get(i))){
-                    food.add(menu.get(i));
+        List<Food> menu = DB.getFood();
+
+        for(int i = 0; i < tempFood.length;i++){
+            for (int j = 0; j<menu.size();j++){
+                if (tempFood[i].equals(menu.get(j).getName())){
+                    food.add(menu.get(j));
+                    break;
                 }
             }
         }

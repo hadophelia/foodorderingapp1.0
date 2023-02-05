@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private Button login,register;
     private EditText username,password;
     SystemDB DB;
+    Spinner spinner;
 
     public static String currentUser,address;
 
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         register = findViewById(R.id.registerButton);
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
+        spinner = findViewById(R.id.spinner);
         DB = new SystemDB(this);
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -44,25 +47,56 @@ public class MainActivity extends AppCompatActivity {
                 String id = username.getText().toString();
                 String pw = password.getText().toString();
 
+                String accounttype = spinner.getSelectedItem().toString();
+
+
                 if (id.equals("")||pw.equals("")){
                     Toast.makeText(MainActivity.this, "Please enter username and password",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Boolean validuser = DB.validateBuyer(id,pw);
-                    if (validuser){
-                        Toast.makeText(MainActivity.this, "Signed in Succesful!",Toast.LENGTH_SHORT).show();
-                        currentUser = id;
-                        address = DB.getAddress(id);
-                        openManage();
+                    if (accounttype.equals("Buyer")){
+                        Boolean validuser = DB.validateBuyer(id,pw);
+                        if (validuser){
+                            Toast.makeText(MainActivity.this, "Signed in Succesful!",Toast.LENGTH_SHORT).show();
+                            currentUser = id;
+                            address = DB.getAddress(id);
+                            openManage();
+                        }
+                        else{
+                            Toast.makeText(MainActivity.this, "Invalid Credential!",Toast.LENGTH_SHORT).show();
+                        }
                     }
-                    else{
-                        Toast.makeText(MainActivity.this, "Invalid Credential!",Toast.LENGTH_SHORT).show();
+                    else if (accounttype.equals("Delivery Guy")){
+                        if (id.equals("delivery1")||pw.equals("pw1")){
+                            Toast.makeText(MainActivity.this, "Signed in Succesful!",Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(MainActivity.this, "Invalid Credential!",Toast.LENGTH_SHORT).show();
+                        }
                     }
+                    else if(accounttype.equals("Kitchen")){
+                        if (id.equals("kitchen")||pw.equals("pw1")){
+                            Toast.makeText(MainActivity.this, "Signed in Succesful!",Toast.LENGTH_SHORT).show();
+                            openKitchen();
+                        }
+                        else{
+                            Toast.makeText(MainActivity.this, "Invalid Credential!",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+
+
                 }
 
             }
         });
     }
+
+    public void openKitchen(){
+        Intent intent3 = new Intent(this,Kitchen_ViewOrder.class);
+        startActivity(intent3);
+    }
+
     public void openRegister() {
         Intent intent = new Intent(this,Register.class);
         startActivity(intent);
