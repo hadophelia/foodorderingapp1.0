@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class OrderAdapter extends RecyclerView.Adapter<orderVH>{
+public class AdminAdapter extends RecyclerView.Adapter<adminVH>{
 
     //List<String> items;
     List<Order> orders;
@@ -21,7 +22,8 @@ public class OrderAdapter extends RecyclerView.Adapter<orderVH>{
     SystemDB DB;
 
 
-    public OrderAdapter(List<Order> orders){
+
+    public AdminAdapter(List<Order> orders){
         this.orders = orders;
     }
 
@@ -31,31 +33,29 @@ public class OrderAdapter extends RecyclerView.Adapter<orderVH>{
 
     @NonNull
     @Override
-    public orderVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public adminVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.ongoing_orderslayout, parent,false);
-        return new orderVH(view).linkAdapter(this);
+                .inflate(R.layout.adminlayout, parent,false);
+        return new adminVH(view).linkAdapter(this);
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull orderVH holder, int position) {
+    public void onBindViewHolder(@NonNull adminVH holder, int position) {
         Order tempOrder = orders.get(position);
         holder.OrderID.setText(("Order Number: #" + Integer.toString(orders.get(position).getOrderID())));
         holder.foodName.setText(("Food Ordered: " + orders.get(position).getFoodID()));
         holder.price.setText(("Price: RM" + Double.toString(tempOrder.getPrice())));
         holder.status.setText(("Order Status: " + tempOrder.getOrderStatus()));
         DB = new SystemDB(context);
+        holder.Bphone.setText("Buyer Phone Number: " + DB.getBuyerPhone(tempOrder.getBuyerID()));
         if(tempOrder.getDeliveryGuyID()!=null){
-            holder.phone.setText("Delivery Guy Phone Number: " + DB.getDGphoneNumber(tempOrder.getDeliveryGuyID()));
+            holder.DGphone.setText("Delivery Guy Phone Number: " + DB.getDGphoneNumber(tempOrder.getDeliveryGuyID()));
         }
         if (tempOrder.getETA()!=null){
             holder.ETA.setText("ETA: " + tempOrder.getETA());
         }
 
-
-        //holder.phone.setText(("0123456789"));
-        //TODO: implement the deliveryguydatabase and deliveryguy objectinordertogenerate phone
 
 
     }
@@ -67,12 +67,12 @@ public class OrderAdapter extends RecyclerView.Adapter<orderVH>{
 
 }
 
-class orderVH extends RecyclerView.ViewHolder{
+class adminVH extends RecyclerView.ViewHolder{
 
-    TextView OrderID,foodName,price,status,ETA,phone;
-    private OrderAdapter adapter;
+    TextView OrderID,foodName,price,status,ETA,DGphone,Bphone;
+    private AdminAdapter adapter;
 
-    public orderVH(@NonNull View itemView) {
+    public adminVH(@NonNull View itemView) {
         super(itemView);
 
         OrderID = itemView.findViewById(R.id.orderID);
@@ -80,22 +80,12 @@ class orderVH extends RecyclerView.ViewHolder{
         price = itemView.findViewById(R.id.price);
         status = itemView.findViewById(R.id.status);
         ETA = itemView.findViewById(R.id.ETA);
-        phone = itemView.findViewById(R.id.phone);
+        DGphone = itemView.findViewById(R.id.DGphone);
+        Bphone = itemView.findViewById(R.id.Bphone);
 
-        /*itemView.findViewById(R.id.cancel).setOnClickListener(view -> {
-            if(adapter.orders.get(getAdapterPosition()).getOrderStatus().equals("Order Received!")){
-                goToCancellation();
-            }
-            else{
-                Toast.makeText(adapter.context, "You cannot cancel the order at this stage.",Toast.LENGTH_SHORT).show();
-            }
-
-            //ManageFoodmain.cart.add(adapter.food.get(getAdapterPosition()));
-            //Toast.makeText(adapter.context, "Added Successfully!",Toast.LENGTH_SHORT).show();
-        });*/
     }
 
-    public orderVH linkAdapter(OrderAdapter adapter){
+    public adminVH linkAdapter(AdminAdapter adapter){
         this.adapter = adapter;
         return this;
     }

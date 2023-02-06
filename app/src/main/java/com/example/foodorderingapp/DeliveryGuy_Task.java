@@ -58,7 +58,6 @@ public class DeliveryGuy_Task extends AppCompatActivity {
             });
 
 
-
             completeOrder.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

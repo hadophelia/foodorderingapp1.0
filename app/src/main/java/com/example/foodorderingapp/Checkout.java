@@ -14,8 +14,9 @@ import android.widget.Toast;
 
 public class Checkout extends AppCompatActivity {
 
-    public Cart finalCart = new Cart(ManageFoodmain.cart);
+    public static Cart finalCart = new Cart(ManageFoodmain.cart);
     public double price = finalCart.calculatePrice();
+    public static String address_final;
 
     SystemDB DB;
 
@@ -54,7 +55,13 @@ public class Checkout extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!finalCart.isEmpty()){
-                    setCheckout();
+                    address_final = address.getText().toString();
+                    if(address_final.length() > 20){
+                        setPay();
+                    }
+                    else{
+                        Toast.makeText(Checkout.this, "Address is too short.",Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -62,6 +69,11 @@ public class Checkout extends AppCompatActivity {
 
     public void cancel() {
         Intent intent = new Intent(this,ManageFoodmain.class);
+        startActivity(intent);
+    }
+
+    public void setPay(){
+        Intent intent = new Intent(this,payment.class);
         startActivity(intent);
     }
 

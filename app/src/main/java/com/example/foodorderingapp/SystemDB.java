@@ -61,16 +61,17 @@ public class SystemDB extends SQLiteOpenHelper {
         SQLiteDatabase MyDB = this.getWritableDatabase();
         String phone = null;
 
-        Cursor cursor = (MyDB.rawQuery("Select phoneNumber from deliveryGuys where deliveryGuyID = ?", new String[]{dgID}));
+        Cursor cursor = (MyDB.rawQuery("Select phoneNumber from deliveryGuys where username = ?", new String[]{dgID}));
         cursor.moveToFirst();
         if (cursor != null){
             if (cursor.moveToFirst()){
-                phone = cursor.getString(cursor.getColumnIndex("address"));
+                phone = cursor.getString(cursor.getColumnIndex("phoneNumber"));
             }
             //the warning is dealed with cursor.movetofirst()
         }
         return phone;
     }
+
 
     public Order getOrder(String deliveryID){
         SQLiteDatabase MyDB = this.getWritableDatabase();
@@ -93,6 +94,26 @@ public class SystemDB extends SQLiteOpenHelper {
         return myOrder;
     }
 
+    public Order findOrder(String orderID){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Order myOrder = null;
+        Cursor cursor = MyDB.rawQuery("Select * from orders where orderID = ?" , new String[]{orderID});
+        cursor.moveToFirst();
+        if(cursor.moveToFirst()){
+
+            int orderNo = cursor.getInt(cursor.getColumnIndex("orderID"));
+            String buyerID = cursor.getString(cursor.getColumnIndex("buyerUsername"));
+            String address = cursor.getString(cursor.getColumnIndex("address"));
+            String foodID = cursor.getString(cursor.getColumnIndex("FoodID"));
+            String orderStatus = cursor.getString(cursor.getColumnIndex("orderStatus"));
+            String deliveryGuyID = cursor.getString(cursor.getColumnIndex("deliveryGuyID"));
+            String ETA = cursor.getString(cursor.getColumnIndex("ETA"));
+            double Price = cursor.getDouble(cursor.getColumnIndex("Price"));
+            myOrder = new Order(orderNo, buyerID,address,foodID,orderStatus,deliveryGuyID,ETA,Price);
+        }
+
+        return myOrder;
+    }
 
     public ArrayList<Food> getFood(){
         SQLiteDatabase MyDB = this.getWritableDatabase();
@@ -103,6 +124,22 @@ public class SystemDB extends SQLiteOpenHelper {
             do{
                 Food food = new Food(cursor.getString(0), cursor.getString(1),cursor.getString(2), cursor.getDouble(3));
                 resultList.add(food);
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        return resultList;
+    }
+
+    public ArrayList<Order> getAllOrder(){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select * from orders",null);
+        ArrayList<Order> resultList = new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do{
+                Order order = new Order(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3)
+                        , cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getDouble(7));
+                resultList.add(order);
             }while(cursor.moveToNext());
         }
         cursor.close();

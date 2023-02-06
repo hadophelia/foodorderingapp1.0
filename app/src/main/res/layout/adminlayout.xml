@@ -50,10 +50,16 @@
                 android:text="ETA: To be Updated" />
 
             <TextView
-                android:id="@+id/phone"
+                android:id="@+id/DGphone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Delivery Guy Phone Number: To be Updated" />
+
+            <TextView
+                android:id="@+id/Bphone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Buyer Phone Number: To be Updated" />
 
         </LinearLayout>
 

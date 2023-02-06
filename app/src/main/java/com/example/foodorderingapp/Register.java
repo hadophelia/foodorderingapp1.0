@@ -50,6 +50,26 @@ public class Register extends AppCompatActivity {
                 if (id.equals("")||pw.equals("")||pw2.equals("")||email1.equals("")||phoneNo.equals("")||address1.equals("")){
                     Toast.makeText(Register.this, "Please enter all field",Toast.LENGTH_SHORT).show();
                 }
+                else if (id.length() < 8 || id.length() > 16){
+                    Toast.makeText(Register.this, "Length of username should be 8-16.",Toast.LENGTH_SHORT).show();
+
+                }
+                else if (pw.length() < 8 || pw.length() > 16){
+                    Toast.makeText(Register.this, "Length of password should be 8-16.",Toast.LENGTH_SHORT).show();
+
+                }
+                else if (!email1.contains("@")||!email1.endsWith(".com")){
+                    Toast.makeText(Register.this, "Please register with a proper email.",Toast.LENGTH_SHORT).show();
+
+                }
+                else if (phoneNo.length() < 10 || phoneNo.length() > 11){
+                    Toast.makeText(Register.this, "Please register with a proper phone number.",Toast.LENGTH_SHORT).show();
+
+                }
+                else if (address1.length() < 25){
+                    Toast.makeText(Register.this, "Address is too short.",Toast.LENGTH_SHORT).show();
+
+                }
                 else{
                     if(pw.equals(pw2)){
                         Boolean existUser = DB.checkusername(id);

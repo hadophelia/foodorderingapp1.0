@@ -26,13 +26,13 @@
 
     <Button
         android:id="@+id/toCartButton"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/menu"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="241dp"
-        android:layout_marginTop="-66dp"
-        android:layout_marginEnd="44dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="18dp"
         android:text="Go to cart" />
 
     <Button
@@ -41,8 +41,8 @@
         android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginBottom="21dp"
         android:text="GO TO ORDER" />
 
     <EditText

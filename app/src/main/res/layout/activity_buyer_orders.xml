@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:text="On-going Orders"
+        android:layout_marginTop="24dp"
+        android:text="My Orders"
         android:textColor="#0097A7"
         android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,8 +20,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="339dp"
-        android:layout_height="405dp"
+        android:layout_width="341dp"
+        android:layout_height="417dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,20 +31,12 @@
         android:id="@+id/backToMainButton"
         android:layout_width="wrap_content"
         android:layout_height="47dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="40dp"
         android:text="BACK TO MAIN"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
-
-    <Button
-        android:id="@+id/pastOrder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="64dp"
-        android:text="PAST ORDER"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

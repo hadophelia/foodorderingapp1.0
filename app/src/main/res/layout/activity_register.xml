@@ -5,7 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backgroundfood"
-    tools:context=".Register" >
+    tools:context=".Register">
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:text="Account Details"
+        android:textColor="#0097A7"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/backButton"
@@ -31,8 +43,8 @@
         android:id="@+id/textView"
         android:layout_width="120dp"
         android:layout_height="30dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="528dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="536dp"
         android:background="#f5fffa"
         android:gravity="center"
         android:text="Username"
@@ -44,12 +56,12 @@
         android:id="@+id/textView2"
         android:layout_width="120dp"
         android:layout_height="30dp"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="480dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="488dp"
         android:background="#f5fffa"
+        android:gravity="center"
         android:text="Password"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -57,12 +69,12 @@
         android:id="@+id/textView6"
         android:layout_width="120dp"
         android:layout_height="30dp"
-        android:gravity="center"
-        android:textSize="14sp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="432dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="440dp"
         android:background="#f5fffa"
+        android:gravity="center"
         android:text="Confirm Password"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -70,12 +82,12 @@
         android:id="@+id/textView40"
         android:layout_width="120dp"
         android:layout_height="30dp"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="384dp"
         android:background="#f5fffa"
+        android:gravity="center"
         android:text="Email"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -83,12 +95,12 @@
         android:id="@+id/textView43"
         android:layout_width="120dp"
         android:layout_height="30dp"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="336dp"
         android:background="#f5fffa"
+        android:gravity="center"
         android:text="Phone Number"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -96,12 +108,12 @@
         android:id="@+id/textView44"
         android:layout_width="120dp"
         android:layout_height="30dp"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="288dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="284dp"
         android:background="#f5fffa"
+        android:gravity="center"
         android:text="Address"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -109,84 +121,72 @@
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="520dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="536dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="username"
+        android:hint="username"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="476dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="488dp"
         android:ems="10"
         android:hint="password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/confirmPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="432dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="440dp"
         android:ems="10"
         android:hint="re-enter password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView6" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
+        android:layout_marginStart="36dp"
         android:layout_marginBottom="384dp"
         android:ems="10"
         android:hint="email "
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView40" />
 
     <EditText
         android:id="@+id/phoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
+        android:layout_marginStart="36dp"
         android:layout_marginBottom="336dp"
         android:ems="10"
         android:hint="phone number"
         android:inputType="phone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView43" />
 
     <EditText
         android:id="@+id/address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="292dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="284dp"
         android:ems="10"
         android:hint="address"
         android:inputType="textPostalAddress"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView44" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

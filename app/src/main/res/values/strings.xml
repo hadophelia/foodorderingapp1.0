@@ -6,25 +6,31 @@
         <item>Admin</item>
         <item>Delivery Guy</item>
     </string-array>
-    <string-array name="pizza_size">
-        <item>6" Personal</item>
-        <item>9" Regular</item>
-        <item>12" Large</item>
-        <item>15" Extra Large</item>
+
+    <string-array name="Payment_Method">
+        <item>Card</item>
     </string-array>
-    <string-array name="pizza_toppings">
-        <item>Beef Pepperoni</item>
-        <item>Beefy Sausage</item>
-        <item>Cherry Tomato</item>
-        <item>Crab Filament</item>
-        <item>Green Pepper</item>
+    <string-array name="Months">
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mar</item>
+        <item>Apr</item>
+        <item>May</item>
+        <item>Jun</item>
+        <item>Jul</item>
+        <item>Aug</item>
+        <item>Sept</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>Dec</item>
+
     </string-array>
-    <string-array name="Sort_Kitchen">
-        <item>Sort: No Filter</item>
-        <item>SDHFGSIUDF</item>
-        <item>CSFIHVSDIFGUS</item>
-        <item>SDFJBSDOFHI</item>
-        <item>GSDFGSUIDG</item>
+    <string-array name="Year">
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
     </string-array>
 
     <string name="title_activity_manage_food">ManageFood</string>

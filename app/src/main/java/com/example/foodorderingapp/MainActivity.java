@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,9 +79,18 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     else if(accounttype.equals("Kitchen")){
-                        if (id.equals("kitchen")||pw.equals("pw1")){
+                        if (id.equals("kitchen") && pw.equals("pw1")){
                             Toast.makeText(MainActivity.this, "Signed in Succesful!",Toast.LENGTH_SHORT).show();
                             openKitchen();
+                        }
+                        else{
+                            Toast.makeText(MainActivity.this, "Invalid Credential!",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else if(accounttype.equals("Admin")){
+                        if (id.equals("admin") || pw.equals("pw1")){
+                            Toast.makeText(MainActivity.this, "Signed in Succesful!",Toast.LENGTH_SHORT).show();
+                            openAdmin();
                         }
                         else{
                             Toast.makeText(MainActivity.this, "Invalid Credential!",Toast.LENGTH_SHORT).show();
@@ -95,6 +103,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void openAdmin(){
+        Intent intent5 = new Intent(this, Admin_main.class);
+        startActivity(intent5);
     }
 
     public void openDelivery(){

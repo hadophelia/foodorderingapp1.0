@@ -65,7 +65,7 @@ public class ManageFoodmain extends AppCompatActivity {
                 String name = foodName.getText().toString();
                 //TODO: fix the search method so that it works for shortform
                 for (int i = 0; i < menu.size();i++){
-                    if (menu.get(i).getName().toLowerCase().matches(name.toLowerCase())){
+                    if (menu.get(i).getName().toLowerCase().contains(name.toLowerCase())){
                         searchHit = true;
                         searchList.add(menu.get(i));
                         showFood(recyclerView,searchList);

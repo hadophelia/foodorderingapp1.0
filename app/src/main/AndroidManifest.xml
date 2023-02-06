@@ -10,6 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOrderingApp">
         <activity
+            android:name=".payment"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Admin_main"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".DeliveryGuy_Task"
             android:exported="false">
             <meta-data
@@ -24,43 +38,19 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Cancelation_request"
-            android:exported="false" />
-        <activity
-            android:name=".Delivery_ChangeAvailibility"
-            android:exported="false" />
-        <activity
             android:name=".DeliveryGuy_Home"
-            android:exported="false" />
-        <activity
-            android:name=".Admin_MainPage"
             android:exported="false" />
         <activity
             android:name=".OrderStatus_Buyer"
             android:exported="false" />
         <activity
-            android:name=".Admin_Cancelation_Request"
-            android:exported="false" />
-        <activity
             android:name=".Kitchen_ViewOrder"
-            android:exported="false" />
-        <activity
-            android:name=".GPSTracking_DeliveryGuy"
-            android:exported="false" />
-        <activity
-            android:name=".DeliveryGuy_Availablity"
-            android:exported="false" />
-        <activity
-            android:name=".ConfrimOrder"
             android:exported="false" />
         <activity
             android:name=".Checkout"
             android:exported="false" />
         <activity
             android:name=".Manage_Cart"
-            android:exported="false" />
-        <activity
-            android:name=".FoodDetails"
             android:exported="false" />
         <activity
             android:name=".ManageFoodmain"
